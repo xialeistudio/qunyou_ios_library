@@ -66,7 +66,7 @@
  */
 - (UIImage *)scaleImage:(UIImage *)image scale:(float)scaleSize {
     UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scaleSize, image.size.height * scaleSize));
-    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height * scaleSize];
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height * scaleSize)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
@@ -77,7 +77,7 @@
  */
 - (UIImage *)resizeImage:(UIImage *)image width:(float)width height:(float)height {
     UIGraphicsBeginImageContext(CGSizeMake(width, height));
-    [image drawInRect:CGRectMake(0, 0, width, height];
+    [image drawInRect:CGRectMake(0, 0, width, height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
