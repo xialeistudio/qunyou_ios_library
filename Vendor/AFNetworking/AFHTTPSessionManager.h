@@ -20,13 +20,19 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
 #if !TARGET_OS_WATCH
+
 #import <SystemConfiguration/SystemConfiguration.h>
+
 #endif
+
 #import <Availability.h>
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
+
 #import <MobileCoreServices/MobileCoreServices.h>
+
 #else
 #import <CoreServices/CoreServices.h>
 #endif
@@ -88,21 +94,21 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The URL used to construct requests from relative paths in methods like `requestWithMethod:URLString:parameters:`, and the `GET` / `POST` / et al. convenience methods.
  */
-@property (readonly, nonatomic, strong, nullable) NSURL *baseURL;
+@property(readonly, nonatomic, strong, nullable) NSURL *baseURL;
 
 /**
  Requests created with `requestWithMethod:URLString:parameters:` & `multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:` are constructed with a set of default headers using a parameter serialization specified by this property. By default, this is set to an instance of `AFHTTPRequestSerializer`, which serializes query string parameters for `GET`, `HEAD`, and `DELETE` requests, or otherwise URL-form-encodes HTTP message bodies.
 
  @warning `requestSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
+@property(nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an instance of `AFJSONResponseSerializer`.
 
  @warning `responseSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property(nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 
 ///---------------------
 /// @name Initialization
@@ -150,9 +156,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
-                   parameters:(nullable id)parameters
-                      success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
-                      failure:(nullable void (^)(NSURLSessionDataTask * __nullable task, NSError *error))failure;
+                            parameters:(nullable id)parameters
+                               success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
+                               failure:(nullable void (^)(NSURLSessionDataTask *__nullable task, NSError *error))failure;
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `HEAD` request.
@@ -165,9 +171,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)HEAD:(NSString *)URLString
-                    parameters:(nullable id)parameters
-                       success:(nullable void (^)(NSURLSessionDataTask *task))success
-                       failure:(nullable void (^)(NSURLSessionDataTask * __nullable task, NSError *error))failure;
+                             parameters:(nullable id)parameters
+                                success:(nullable void (^)(NSURLSessionDataTask *task))success
+                                failure:(nullable void (^)(NSURLSessionDataTask *__nullable task, NSError *error))failure;
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `POST` request.
@@ -180,9 +186,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(nullable id)parameters
-                       success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
-                       failure:(nullable void (^)(NSURLSessionDataTask * __nullable task, NSError *error))failure;
+                             parameters:(nullable id)parameters
+                                success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(nullable void (^)(NSURLSessionDataTask *__nullable task, NSError *error))failure;
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a multipart `POST` request.
@@ -196,10 +202,10 @@ NS_ASSUME_NONNULL_BEGIN
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(nullable id)parameters
-     constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
-                       success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
-                       failure:(nullable void (^)(NSURLSessionDataTask * __nullable task, NSError *error))failure;
+                             parameters:(nullable id)parameters
+              constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
+                                success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(nullable void (^)(NSURLSessionDataTask *__nullable task, NSError *error))failure;
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `PUT` request.
@@ -212,9 +218,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
-                   parameters:(nullable id)parameters
-                      success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
-                      failure:(nullable void (^)(NSURLSessionDataTask * __nullable task, NSError *error))failure;
+                            parameters:(nullable id)parameters
+                               success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
+                               failure:(nullable void (^)(NSURLSessionDataTask *__nullable task, NSError *error))failure;
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `PATCH` request.
@@ -227,9 +233,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)PATCH:(NSString *)URLString
-                     parameters:(nullable id)parameters
-                        success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
-                        failure:(nullable void (^)(NSURLSessionDataTask * __nullable task, NSError *error))failure;
+                              parameters:(nullable id)parameters
+                                 success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                 failure:(nullable void (^)(NSURLSessionDataTask *__nullable task, NSError *error))failure;
 
 /**
  Creates and runs an `NSURLSessionDataTask` with a `DELETE` request.
@@ -242,9 +248,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -dataTaskWithRequest:completionHandler:
  */
 - (nullable NSURLSessionDataTask *)DELETE:(NSString *)URLString
-                      parameters:(nullable id)parameters
-                         success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
-                         failure:(nullable void (^)(NSURLSessionDataTask * __nullable task, NSError *error))failure;
+                               parameters:(nullable id)parameters
+                                  success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                  failure:(nullable void (^)(NSURLSessionDataTask *__nullable task, NSError *error))failure;
 
 @end
 

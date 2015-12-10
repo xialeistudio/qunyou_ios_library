@@ -30,13 +30,13 @@
 #import "AFURLRequestSerialization.h"
 
 @interface UIWebView (_AFNetworking)
-@property (readwrite, nonatomic, strong, setter = af_setHTTPRequestOperation:) AFHTTPRequestOperation *af_HTTPRequestOperation;
+@property(readwrite, nonatomic, strong, setter = af_setHTTPRequestOperation:) AFHTTPRequestOperation *af_HTTPRequestOperation;
 @end
 
 @implementation UIWebView (_AFNetworking)
 
 - (AFHTTPRequestOperation *)af_HTTPRequestOperation {
-    return (AFHTTPRequestOperation *)objc_getAssociatedObject(self, @selector(af_HTTPRequestOperation));
+    return (AFHTTPRequestOperation *) objc_getAssociatedObject(self, @selector(af_HTTPRequestOperation));
 }
 
 - (void)af_setHTTPRequestOperation:(AFHTTPRequestOperation *)operation {
@@ -62,7 +62,7 @@
 #pragma clang diagnostic pop
 }
 
-- (void)setRequestSerializer:(AFHTTPRequestSerializer<AFURLRequestSerialization> *)requestSerializer {
+- (void)setRequestSerializer:(AFHTTPRequestSerializer <AFURLRequestSerialization> *)requestSerializer {
     objc_setAssociatedObject(self, @selector(requestSerializer), requestSerializer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -79,7 +79,7 @@
 #pragma clang diagnostic pop
 }
 
-- (void)setResponseSerializer:(AFHTTPResponseSerializer<AFURLResponseSerialization> *)responseSerializer {
+- (void)setResponseSerializer:(AFHTTPResponseSerializer <AFURLResponseSerialization> *)responseSerializer {
     objc_setAssociatedObject(self, @selector(responseSerializer), responseSerializer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -87,13 +87,12 @@
 
 - (void)loadRequest:(NSURLRequest *)request
            progress:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress
-            success:(NSString * (^)(NSHTTPURLResponse *response, NSString *HTML))success
-            failure:(void (^)(NSError *error))failure
-{
+            success:(NSString *(^)(NSHTTPURLResponse *response, NSString *HTML))success
+            failure:(void (^)(NSError *error))failure {
     [self loadRequest:request MIMEType:nil textEncodingName:nil progress:progress success:^NSData *(NSHTTPURLResponse *response, NSData *data) {
         NSStringEncoding stringEncoding = NSUTF8StringEncoding;
         if (response.textEncodingName) {
-            CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)response.textEncodingName);
+            CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef) response.textEncodingName);
             if (encoding != kCFStringEncodingInvalidId) {
                 stringEncoding = CFStringConvertEncodingToNSStringEncoding(encoding);
             }
@@ -105,16 +104,15 @@
         }
 
         return [string dataUsingEncoding:stringEncoding];
-    } failure:failure];
+    }         failure:failure];
 }
 
 - (void)loadRequest:(NSURLRequest *)request
            MIMEType:(NSString *)MIMEType
    textEncodingName:(NSString *)textEncodingName
            progress:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress
-            success:(NSData * (^)(NSHTTPURLResponse *response, NSData *data))success
-            failure:(void (^)(NSError *error))failure
-{
+            success:(NSData *(^)(NSHTTPURLResponse *response, NSData *data))success
+            failure:(void (^)(NSError *error))failure {
     NSParameterAssert(request);
 
     if (self.af_HTTPRequestOperation) {
@@ -126,7 +124,7 @@
     self.af_HTTPRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     self.af_HTTPRequestOperation.responseSerializer = self.responseSerializer;
 
-    __weak __typeof(self)weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     [self.af_HTTPRequestOperation setDownloadProgressBlock:progress];
     [self.af_HTTPRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSData *data = success ? success(operation.response, operation.responseData) : operation.responseData;
@@ -141,7 +139,7 @@
         }
 
 #pragma clang diagnostic pop
-    } failure:^(AFHTTPRequestOperation * __unused operation, NSError *error) {
+    }                                                   failure:^(AFHTTPRequestOperation *__unused operation, NSError *error) {
         if (failure) {
             failure(error);
         }

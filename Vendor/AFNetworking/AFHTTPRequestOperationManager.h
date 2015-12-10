@@ -24,7 +24,9 @@
 #import <Availability.h>
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
+
 #import <MobileCoreServices/MobileCoreServices.h>
+
 #else
 #import <CoreServices/CoreServices.h>
 #endif
@@ -96,26 +98,26 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The URL used to monitor reachability, and construct requests from relative paths in methods like `requestWithMethod:URLString:parameters:`, and the `GET` / `POST` / et al. convenience methods.
  */
-@property (readonly, nonatomic, strong, nullable) NSURL *baseURL;
+@property(readonly, nonatomic, strong, nullable) NSURL *baseURL;
 
 /**
  Requests created with `requestWithMethod:URLString:parameters:` & `multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:` are constructed with a set of default headers using a parameter serialization specified by this property. By default, this is set to an instance of `AFHTTPRequestSerializer`, which serializes query string parameters for `GET`, `HEAD`, and `DELETE` requests, or otherwise URL-form-encodes HTTP message bodies.
 
  @warning `requestSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
+@property(nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to a JSON serializer, which serializes data from responses with a `application/json` MIME type, and falls back to the raw data object. The serializer validates the status code to be in the `2XX` range, denoting success. If the response serializer generates an error in `-responseObjectForResponse:data:error:`, the `failure` callback of the session task or request operation will be executed; otherwise, the `success` callback will be executed.
 
  @warning `responseSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property(nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 
 /**
  The operation queue on which request operations are scheduled and run.
  */
-@property (nonatomic, strong) NSOperationQueue *operationQueue;
+@property(nonatomic, strong) NSOperationQueue *operationQueue;
 
 ///-------------------------------
 /// @name Managing URL Credentials
@@ -126,14 +128,14 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see AFURLConnectionOperation -shouldUseCredentialStorage
  */
-@property (nonatomic, assign) BOOL shouldUseCredentialStorage;
+@property(nonatomic, assign) BOOL shouldUseCredentialStorage;
 
 /**
  The credential used by request operations for authentication challenges.
 
  @see AFURLConnectionOperation -credential
  */
-@property (nonatomic, strong, nullable) NSURLCredential *credential;
+@property(nonatomic, strong, nullable) NSURLCredential *credential;
 
 ///-------------------------------
 /// @name Managing Security Policy
@@ -142,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The security policy used by created request operations to evaluate server trust for secure connections. `AFHTTPRequestOperationManager` uses the `defaultPolicy` unless otherwise specified.
  */
-@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
+@property(nonatomic, strong) AFSecurityPolicy *securityPolicy;
 
 ///------------------------------------
 /// @name Managing Network Reachability
@@ -151,7 +153,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The network reachability manager. `AFHTTPRequestOperationManager` uses the `sharedManager` by default.
  */
-@property (readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
+@property(readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 
 ///-------------------------------
 /// @name Managing Callback Queues
@@ -161,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
  The dispatch queue for the `completionBlock` of request operations. If `NULL` (default), the main queue is used.
  */
 #if OS_OBJECT_USE_OBJC
-@property (nonatomic, strong, nullable) dispatch_queue_t completionQueue;
+@property(nonatomic, strong, nullable) dispatch_queue_t completionQueue;
 #else
 @property (nonatomic, assign, nullable) dispatch_queue_t completionQueue;
 #endif
@@ -170,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
  The dispatch group for the `completionBlock` of request operations. If `NULL` (default), a private dispatch group is used.
  */
 #if OS_OBJECT_USE_OBJC
-@property (nonatomic, strong, nullable) dispatch_group_t completionGroup;
+@property(nonatomic, strong, nullable) dispatch_group_t completionGroup;
 #else
 @property (nonatomic, assign, nullable) dispatch_group_t completionGroup;
 #endif
@@ -225,9 +227,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
 - (nullable AFHTTPRequestOperation *)GET:(NSString *)URLString
-                     parameters:(nullable id)parameters
-                        success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                        failure:(nullable void (^)(AFHTTPRequestOperation * __nullable operation, NSError *error))failure;
+                              parameters:(nullable id)parameters
+                                 success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                 failure:(nullable void (^)(AFHTTPRequestOperation *__nullable operation, NSError *error))failure;
 
 /**
  Creates and runs an `AFHTTPRequestOperation` with a `HEAD` request.
@@ -240,9 +242,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
 - (nullable AFHTTPRequestOperation *)HEAD:(NSString *)URLString
-                      parameters:(nullable id)parameters
-                         success:(nullable void (^)(AFHTTPRequestOperation *operation))success
-                         failure:(nullable void (^)(AFHTTPRequestOperation * __nullable operation, NSError *error))failure;
+                               parameters:(nullable id)parameters
+                                  success:(nullable void (^)(AFHTTPRequestOperation *operation))success
+                                  failure:(nullable void (^)(AFHTTPRequestOperation *__nullable operation, NSError *error))failure;
 
 /**
  Creates and runs an `AFHTTPRequestOperation` with a `POST` request.
@@ -255,9 +257,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
 - (nullable AFHTTPRequestOperation *)POST:(NSString *)URLString
-                      parameters:(nullable id)parameters
-                         success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                         failure:(nullable void (^)(AFHTTPRequestOperation * __nullable operation, NSError *error))failure;
+                               parameters:(nullable id)parameters
+                                  success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                  failure:(nullable void (^)(AFHTTPRequestOperation *__nullable operation, NSError *error))failure;
 
 /**
  Creates and runs an `AFHTTPRequestOperation` with a multipart `POST` request.
@@ -271,10 +273,10 @@ NS_ASSUME_NONNULL_BEGIN
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
 - (nullable AFHTTPRequestOperation *)POST:(NSString *)URLString
-                      parameters:(nullable id)parameters
-       constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
-                         success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                         failure:(nullable void (^)(AFHTTPRequestOperation * __nullable operation, NSError *error))failure;
+                               parameters:(nullable id)parameters
+                constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
+                                  success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                  failure:(nullable void (^)(AFHTTPRequestOperation *__nullable operation, NSError *error))failure;
 
 /**
  Creates and runs an `AFHTTPRequestOperation` with a `PUT` request.
@@ -287,9 +289,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
 - (nullable AFHTTPRequestOperation *)PUT:(NSString *)URLString
-                     parameters:(nullable id)parameters
-                        success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                        failure:(nullable void (^)(AFHTTPRequestOperation * __nullable operation, NSError *error))failure;
+                              parameters:(nullable id)parameters
+                                 success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                 failure:(nullable void (^)(AFHTTPRequestOperation *__nullable operation, NSError *error))failure;
 
 /**
  Creates and runs an `AFHTTPRequestOperation` with a `PATCH` request.
@@ -302,9 +304,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
 - (nullable AFHTTPRequestOperation *)PATCH:(NSString *)URLString
-                       parameters:(nullable id)parameters
-                          success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                          failure:(nullable void (^)(AFHTTPRequestOperation * __nullable operation, NSError *error))failure;
+                                parameters:(nullable id)parameters
+                                   success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                   failure:(nullable void (^)(AFHTTPRequestOperation *__nullable operation, NSError *error))failure;
 
 /**
  Creates and runs an `AFHTTPRequestOperation` with a `DELETE` request.
@@ -317,9 +319,9 @@ NS_ASSUME_NONNULL_BEGIN
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
 - (nullable AFHTTPRequestOperation *)DELETE:(NSString *)URLString
-                        parameters:(nullable id)parameters
-                           success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(nullable void (^)(AFHTTPRequestOperation * __nullable operation, NSError *error))failure;
+                                 parameters:(nullable id)parameters
+                                    success:(nullable void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                    failure:(nullable void (^)(AFHTTPRequestOperation *__nullable operation, NSError *error))failure;
 
 @end
 

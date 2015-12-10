@@ -24,8 +24,11 @@
 #import "AFURLResponseSerialization.h"
 #import "AFURLRequestSerialization.h"
 #import "AFSecurityPolicy.h"
+
 #if !TARGET_OS_WATCH
+
 #import "AFNetworkReachabilityManager.h"
+
 #endif
 
 #ifndef NS_DESIGNATED_INITIALIZER
@@ -100,19 +103,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The managed session.
  */
-@property (readonly, nonatomic, strong) NSURLSession *session;
+@property(readonly, nonatomic, strong) NSURLSession *session;
 
 /**
  The operation queue on which delegate callbacks are run.
  */
-@property (readonly, nonatomic, strong) NSOperationQueue *operationQueue;
+@property(readonly, nonatomic, strong) NSOperationQueue *operationQueue;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an instance of `AFJSONResponseSerializer`.
 
  @warning `responseSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) id <AFURLResponseSerialization> responseSerializer;
+@property(nonatomic, strong) id <AFURLResponseSerialization> responseSerializer;
 
 ///-------------------------------
 /// @name Managing Security Policy
@@ -121,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The security policy used by created request operations to evaluate server trust for secure connections. `AFURLSessionManager` uses the `defaultPolicy` unless otherwise specified.
  */
-@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
+@property(nonatomic, strong) AFSecurityPolicy *securityPolicy;
 
 #if !TARGET_OS_WATCH
 ///--------------------------------------
@@ -131,7 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The network reachability manager. `AFURLSessionManager` uses the `sharedManager` by default.
  */
-@property (readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
+@property(readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 #endif
 
 ///----------------------------
@@ -141,22 +144,22 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The data, upload, and download tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *tasks;
+@property(readonly, nonatomic, strong) NSArray *tasks;
 
 /**
  The data tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *dataTasks;
+@property(readonly, nonatomic, strong) NSArray *dataTasks;
 
 /**
  The upload tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *uploadTasks;
+@property(readonly, nonatomic, strong) NSArray *uploadTasks;
 
 /**
  The download tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *downloadTasks;
+@property(readonly, nonatomic, strong) NSArray *downloadTasks;
 
 ///-------------------------------
 /// @name Managing Callback Queues
@@ -166,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
  The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
  */
 #if OS_OBJECT_USE_OBJC
-@property (nonatomic, strong, nullable) dispatch_queue_t completionQueue;
+@property(nonatomic, strong, nullable) dispatch_queue_t completionQueue;
 #else
 @property (nonatomic, assign, nullable) dispatch_queue_t completionQueue;
 #endif
@@ -175,7 +178,7 @@ NS_ASSUME_NONNULL_BEGIN
  The dispatch group for `completionBlock`. If `NULL` (default), a private dispatch group is used.
  */
 #if OS_OBJECT_USE_OBJC
-@property (nonatomic, strong, nullable) dispatch_group_t completionGroup;
+@property(nonatomic, strong, nullable) dispatch_group_t completionGroup;
 #else
 @property (nonatomic, assign, nullable) dispatch_group_t completionGroup;
 #endif
@@ -191,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see https://github.com/AFNetworking/AFNetworking/issues/1675
  */
-@property (nonatomic, assign) BOOL attemptsToRecreateUploadTasksForBackgroundSessions;
+@property(nonatomic, assign) BOOL attemptsToRecreateUploadTasksForBackgroundSessions;
 
 ///---------------------
 /// @name Initialization
@@ -224,7 +227,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param completionHandler A block object to be executed when the task finishes. This block has no return value and takes three arguments: the server response, the response object created by that serializer, and the error that occurred, if any.
  */
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
-                            completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject,  NSError * __nullable error))completionHandler;
+                            completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject, NSError *__nullable error))completionHandler;
 
 ///---------------------------
 /// @name Running Upload Tasks
@@ -242,8 +245,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSURLSessionUploadTask *)uploadTaskWithRequest:(NSURLRequest *)request
                                          fromFile:(NSURL *)fileURL
-                                         progress:(NSProgress * __nullable __autoreleasing * __nullable)progress
-                                completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject, NSError  * __nullable error))completionHandler;
+                                         progress:(NSProgress *__nullable __autoreleasing *__nullable)progress
+                                completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject, NSError *__nullable error))completionHandler;
 
 /**
  Creates an `NSURLSessionUploadTask` with the specified request for an HTTP body.
@@ -255,8 +258,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSURLSessionUploadTask *)uploadTaskWithRequest:(NSURLRequest *)request
                                          fromData:(nullable NSData *)bodyData
-                                         progress:(NSProgress * __nullable __autoreleasing * __nullable)progress
-                                completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject, NSError * __nullable error))completionHandler;
+                                         progress:(NSProgress *__nullable __autoreleasing *__nullable)progress
+                                completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject, NSError *__nullable error))completionHandler;
 
 /**
  Creates an `NSURLSessionUploadTask` with the specified streaming request.
@@ -266,8 +269,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param completionHandler A block object to be executed when the task finishes. This block has no return value and takes three arguments: the server response, the response object created by that serializer, and the error that occurred, if any.
  */
 - (NSURLSessionUploadTask *)uploadTaskWithStreamedRequest:(NSURLRequest *)request
-                                                 progress:(NSProgress * __nullable __autoreleasing * __nullable)progress
-                                        completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject, NSError * __nullable error))completionHandler;
+                                                 progress:(NSProgress *__nullable __autoreleasing *__nullable)progress
+                                        completionHandler:(nullable void (^)(NSURLResponse *response, id __nullable responseObject, NSError *__nullable error))completionHandler;
 
 ///-----------------------------
 /// @name Running Download Tasks
@@ -284,9 +287,9 @@ NS_ASSUME_NONNULL_BEGIN
  @warning If using a background `NSURLSessionConfiguration` on iOS, these blocks will be lost when the app is terminated. Background sessions may prefer to use `-setDownloadTaskDidFinishDownloadingBlock:` to specify the URL for saving the downloaded file, rather than the destination block of this method.
  */
 - (NSURLSessionDownloadTask *)downloadTaskWithRequest:(NSURLRequest *)request
-                                             progress:(NSProgress * __nullable __autoreleasing * __nullable)progress
-                                          destination:(nullable NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
-                                    completionHandler:(nullable void (^)(NSURLResponse *response, NSURL * __nullable filePath, NSError * __nullable error))completionHandler;
+                                             progress:(NSProgress *__nullable __autoreleasing *__nullable)progress
+                                          destination:(nullable NSURL *(^)(NSURL *targetPath, NSURLResponse *response))destination
+                                    completionHandler:(nullable void (^)(NSURLResponse *response, NSURL *__nullable filePath, NSError *__nullable error))completionHandler;
 
 /**
  Creates an `NSURLSessionDownloadTask` with the specified resume data.
@@ -297,9 +300,9 @@ NS_ASSUME_NONNULL_BEGIN
  @param completionHandler A block to be executed when a task finishes. This block has no return value and takes three arguments: the server response, the path of the downloaded file, and the error describing the network or parsing error that occurred, if any.
  */
 - (NSURLSessionDownloadTask *)downloadTaskWithResumeData:(NSData *)resumeData
-                                                progress:(NSProgress * __nullable __autoreleasing * __nullable)progress
-                                             destination:(nullable NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
-                                       completionHandler:(nullable void (^)(NSURLResponse *response, NSURL * __nullable filePath, NSError * __nullable error))completionHandler;
+                                                progress:(NSProgress *__nullable __autoreleasing *__nullable)progress
+                                             destination:(nullable NSURL *(^)(NSURL *targetPath, NSURLResponse *response))destination
+                                       completionHandler:(nullable void (^)(NSURLResponse *response, NSURL *__nullable filePath, NSError *__nullable error))completionHandler;
 
 ///---------------------------------
 /// @name Getting Progress for Tasks
@@ -339,7 +342,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param block A block object to be executed when a connection level authentication challenge has occurred. The block returns the disposition of the authentication challenge, and takes three arguments: the session, the authentication challenge, and a pointer to the credential that should be used to resolve the challenge.
  */
-- (void)setSessionDidReceiveAuthenticationChallengeBlock:(nullable NSURLSessionAuthChallengeDisposition (^)(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential * __nullable __autoreleasing * __nullable credential))block;
+- (void)setSessionDidReceiveAuthenticationChallengeBlock:(nullable NSURLSessionAuthChallengeDisposition (^)(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__nullable __autoreleasing *__nullable credential))block;
 
 ///--------------------------------------
 /// @name Setting Task Delegate Callbacks
@@ -350,21 +353,21 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param block A block object to be executed when a task requires a new request body stream.
  */
-- (void)setTaskNeedNewBodyStreamBlock:(nullable NSInputStream * (^)(NSURLSession *session, NSURLSessionTask *task))block;
+- (void)setTaskNeedNewBodyStreamBlock:(nullable NSInputStream *(^)(NSURLSession *session, NSURLSessionTask *task))block;
 
 /**
  Sets a block to be executed when an HTTP request is attempting to perform a redirection to a different URL, as handled by the `NSURLSessionTaskDelegate` method `URLSession:willPerformHTTPRedirection:newRequest:completionHandler:`.
 
  @param block A block object to be executed when an HTTP request is attempting to perform a redirection to a different URL. The block returns the request to be made for the redirection, and takes four arguments: the session, the task, the redirection response, and the request corresponding to the redirection response.
  */
-- (void)setTaskWillPerformHTTPRedirectionBlock:(nullable NSURLRequest * (^)(NSURLSession *session, NSURLSessionTask *task, NSURLResponse *response, NSURLRequest *request))block;
+- (void)setTaskWillPerformHTTPRedirectionBlock:(nullable NSURLRequest *(^)(NSURLSession *session, NSURLSessionTask *task, NSURLResponse *response, NSURLRequest *request))block;
 
 /**
  Sets a block to be executed when a session task has received a request specific authentication challenge, as handled by the `NSURLSessionTaskDelegate` method `URLSession:task:didReceiveChallenge:completionHandler:`.
 
  @param block A block object to be executed when a session task has received a request specific authentication challenge. The block returns the disposition of the authentication challenge, and takes four arguments: the session, the task, the authentication challenge, and a pointer to the credential that should be used to resolve the challenge.
  */
-- (void)setTaskDidReceiveAuthenticationChallengeBlock:(nullable NSURLSessionAuthChallengeDisposition (^)(NSURLSession *session, NSURLSessionTask *task, NSURLAuthenticationChallenge *challenge, NSURLCredential * __nullable __autoreleasing * __nullable credential))block;
+- (void)setTaskDidReceiveAuthenticationChallengeBlock:(nullable NSURLSessionAuthChallengeDisposition (^)(NSURLSession *session, NSURLSessionTask *task, NSURLAuthenticationChallenge *challenge, NSURLCredential *__nullable __autoreleasing *__nullable credential))block;
 
 /**
  Sets a block to be executed periodically to track upload progress, as handled by the `NSURLSessionTaskDelegate` method `URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`.
@@ -378,7 +381,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param block A block object to be executed when a session task is completed. The block has no return value, and takes three arguments: the session, the task, and any error that occurred in the process of executing the task.
  */
-- (void)setTaskDidCompleteBlock:(nullable void (^)(NSURLSession *session, NSURLSessionTask *task, NSError * __nullable error))block;
+- (void)setTaskDidCompleteBlock:(nullable void (^)(NSURLSession *session, NSURLSessionTask *task, NSError *__nullable error))block;
 
 ///-------------------------------------------
 /// @name Setting Data Task Delegate Callbacks
@@ -410,7 +413,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param block A block object to be executed to determine the caching behavior of a data task. The block returns the response to cache, and takes three arguments: the session, the data task, and the proposed cached URL response.
  */
-- (void)setDataTaskWillCacheResponseBlock:(nullable NSCachedURLResponse * (^)(NSURLSession *session, NSURLSessionDataTask *dataTask, NSCachedURLResponse *proposedResponse))block;
+- (void)setDataTaskWillCacheResponseBlock:(nullable NSCachedURLResponse *(^)(NSURLSession *session, NSURLSessionDataTask *dataTask, NSCachedURLResponse *proposedResponse))block;
 
 /**
  Sets a block to be executed once all messages enqueued for a session have been delivered, as handled by the `NSURLSessionDataDelegate` method `URLSessionDidFinishEventsForBackgroundURLSession:`.
@@ -428,7 +431,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param block A block object to be executed when a download task has completed. The block returns the URL the download should be moved to, and takes three arguments: the session, the download task, and the temporary location of the downloaded file. If the file manager encounters an error while attempting to move the temporary file to the destination, an `AFURLSessionDownloadTaskDidFailToMoveFileNotification` will be posted, with the download task as its object, and the user info of the error.
  */
-- (void)setDownloadTaskDidFinishDownloadingBlock:(nullable NSURL * __nullable  (^)(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, NSURL *location))block;
+- (void)setDownloadTaskDidFinishDownloadingBlock:(nullable NSURL *__nullable (^)(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, NSURL *location))block;
 
 /**
  Sets a block to be executed periodically to track download progress, as handled by the `NSURLSessionDownloadDelegate` method `URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesWritten:totalBytesExpectedToWrite:`.
@@ -457,98 +460,98 @@ NS_ASSUME_NONNULL_BEGIN
 
  @deprecated Use `AFNetworkingTaskDidResumeNotification` instead.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidStartNotification DEPRECATED_ATTRIBUTE;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidStartNotification DEPRECATED_ATTRIBUTE;
 
 /**
  Posted when a task resumes.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidResumeNotification;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidResumeNotification;
 
 /**
  Posted when a task finishes executing. Includes a userInfo dictionary with additional information about the task.
 
  @deprecated Use `AFNetworkingTaskDidCompleteNotification` instead.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidFinishNotification DEPRECATED_ATTRIBUTE;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidFinishNotification DEPRECATED_ATTRIBUTE;
 
 /**
  Posted when a task finishes executing. Includes a userInfo dictionary with additional information about the task.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidCompleteNotification;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidCompleteNotification;
 
 /**
  Posted when a task suspends its execution.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidSuspendNotification;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidSuspendNotification;
 
 /**
  Posted when a session is invalidated.
  */
-FOUNDATION_EXPORT NSString * const AFURLSessionDidInvalidateNotification;
+FOUNDATION_EXPORT NSString *const AFURLSessionDidInvalidateNotification;
 
 /**
  Posted when a session download task encountered an error when moving the temporary download file to a specified destination.
  */
-FOUNDATION_EXPORT NSString * const AFURLSessionDownloadTaskDidFailToMoveFileNotification;
+FOUNDATION_EXPORT NSString *const AFURLSessionDownloadTaskDidFailToMoveFileNotification;
 
 /**
  The raw response data of the task. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if response data exists for the task.
 
  @deprecated Use `AFNetworkingTaskDidCompleteResponseDataKey` instead.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidFinishResponseDataKey DEPRECATED_ATTRIBUTE;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidFinishResponseDataKey DEPRECATED_ATTRIBUTE;
 
 /**
  The raw response data of the task. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if response data exists for the task.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidCompleteResponseDataKey;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidCompleteResponseDataKey;
 
 /**
  The serialized response object of the task. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if the response was serialized.
 
  @deprecated Use `AFNetworkingTaskDidCompleteSerializedResponseKey` instead.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidFinishSerializedResponseKey DEPRECATED_ATTRIBUTE;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidFinishSerializedResponseKey DEPRECATED_ATTRIBUTE;
 
 /**
  The serialized response object of the task. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if the response was serialized.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidCompleteSerializedResponseKey;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidCompleteSerializedResponseKey;
 
 /**
  The response serializer used to serialize the response. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if the task has an associated response serializer.
 
  @deprecated Use `AFNetworkingTaskDidCompleteResponseSerializerKey` instead.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidFinishResponseSerializerKey DEPRECATED_ATTRIBUTE;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidFinishResponseSerializerKey DEPRECATED_ATTRIBUTE;
 
 /**
  The response serializer used to serialize the response. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if the task has an associated response serializer.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidCompleteResponseSerializerKey;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidCompleteResponseSerializerKey;
 
 /**
  The file path associated with the download task. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if an the response data has been stored directly to disk.
 
  @deprecated Use `AFNetworkingTaskDidCompleteAssetPathKey` instead.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidFinishAssetPathKey DEPRECATED_ATTRIBUTE;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidFinishAssetPathKey DEPRECATED_ATTRIBUTE;
 
 /**
  The file path associated with the download task. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if an the response data has been stored directly to disk.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidCompleteAssetPathKey;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidCompleteAssetPathKey;
 
 /**
  Any error associated with the task, or the serialization of the response. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if an error exists.
 
  @deprecated Use `AFNetworkingTaskDidCompleteErrorKey` instead.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidFinishErrorKey DEPRECATED_ATTRIBUTE;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidFinishErrorKey DEPRECATED_ATTRIBUTE;
 
 /**
  Any error associated with the task, or the serialization of the response. Included in the userInfo dictionary of the `AFNetworkingTaskDidFinishNotification` if an error exists.
  */
-FOUNDATION_EXPORT NSString * const AFNetworkingTaskDidCompleteErrorKey;
+FOUNDATION_EXPORT NSString *const AFNetworkingTaskDidCompleteErrorKey;
 
 NS_ASSUME_NONNULL_END

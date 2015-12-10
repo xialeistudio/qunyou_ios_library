@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @discussion Subclasses of `AFImageResponseSerializer` could be used to perform post-processing, such as color correction, face detection, or other effects. See https://github.com/AFNetworking/AFCoreImageSerializer
  */
-@property (nonatomic, strong) id <AFURLResponseSerialization> imageResponseSerializer;
+@property(nonatomic, strong) id <AFURLResponseSerialization> imageResponseSerializer;
 
 ///--------------------
 /// @name Setting Image
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setImageForState:(UIControlState)state
           withURLRequest:(NSURLRequest *)urlRequest
         placeholderImage:(nullable UIImage *)placeholderImage
-                 success:(nullable void (^)(NSURLRequest *request, NSHTTPURLResponse * __nullable response, UIImage *image))success
+                 success:(nullable void (^)(NSURLRequest *request, NSHTTPURLResponse *__nullable response, UIImage *image))success
                  failure:(nullable void (^)(NSError *error))failure;
 
 
@@ -157,7 +157,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setBackgroundImageForState:(UIControlState)state
                     withURLRequest:(NSURLRequest *)urlRequest
                   placeholderImage:(nullable UIImage *)placeholderImage
-                           success:(nullable void (^)(NSURLRequest *request, NSHTTPURLResponse * __nullable response, UIImage *image))success
+                           success:(nullable void (^)(NSURLRequest *request, NSHTTPURLResponse *__nullable response, UIImage *image))success
                            failure:(nullable void (^)(NSError *error))failure;
 
 

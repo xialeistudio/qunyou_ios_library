@@ -27,16 +27,22 @@
 #import "AFHTTPRequestOperation.h"
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 #import "AFURLSessionManager.h"
+
 #endif
 
 @interface AFActivityIndicatorViewNotificationObserver : NSObject
-@property (readonly, nonatomic, weak) UIActivityIndicatorView *activityIndicatorView;
+@property(readonly, nonatomic, weak) UIActivityIndicatorView *activityIndicatorView;
+
 - (instancetype)initWithActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView;
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 - (void)setAnimatingWithStateOfTask:(NSURLSessionTask *)task;
+
 #endif
+
 - (void)setAnimatingWithStateOfOperation:(AFURLConnectionOperation *)operation;
 
 @end
@@ -53,9 +59,11 @@
 }
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 - (void)setAnimatingWithStateOfTask:(NSURLSessionTask *)task {
     [[self af_notificationObserver] setAnimatingWithStateOfTask:task];
 }
+
 #endif
 
 - (void)setAnimatingWithStateOfOperation:(AFURLConnectionOperation *)operation {
@@ -66,8 +74,7 @@
 
 @implementation AFActivityIndicatorViewNotificationObserver
 
-- (instancetype)initWithActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView
-{
+- (instancetype)initWithActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
     self = [super init];
     if (self) {
         _activityIndicatorView = activityIndicatorView;
@@ -76,16 +83,17 @@
 }
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 - (void)setAnimatingWithStateOfTask:(NSURLSessionTask *)task {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidResumeNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidSuspendNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidCompleteNotification object:nil];
-    
+
     if (task) {
         if (task.state != NSURLSessionTaskStateCompleted) {
-            
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreceiver-is-weak"
 #pragma clang diagnostic ignored "-Warc-repeated-use-of-weak"
@@ -102,6 +110,7 @@
         }
     }
 }
+
 #endif
 
 #pragma mark -
@@ -114,7 +123,7 @@
 
     if (operation) {
         if (![operation isFinished]) {
-            
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreceiver-is-weak"
 #pragma clang diagnostic ignored "-Warc-repeated-use-of-weak"
@@ -155,13 +164,13 @@
 
 - (void)dealloc {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
+
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidCompleteNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidResumeNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidSuspendNotification object:nil];
 #endif
-    
+
     [notificationCenter removeObserver:self name:AFNetworkingOperationDidStartNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingOperationDidFinishNotification object:nil];
 }

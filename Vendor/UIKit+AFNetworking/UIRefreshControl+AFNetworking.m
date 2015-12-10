@@ -28,16 +28,22 @@
 #import "AFHTTPRequestOperation.h"
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 #import "AFURLSessionManager.h"
+
 #endif
 
 @interface AFRefreshControlNotificationObserver : NSObject
-@property (readonly, nonatomic, weak) UIRefreshControl *refreshControl;
+@property(readonly, nonatomic, weak) UIRefreshControl *refreshControl;
+
 - (instancetype)initWithActivityRefreshControl:(UIRefreshControl *)refreshControl;
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 - (void)setRefreshingWithStateOfTask:(NSURLSessionTask *)task;
+
 #endif
+
 - (void)setRefreshingWithStateOfOperation:(AFURLConnectionOperation *)operation;
 
 @end
@@ -54,9 +60,11 @@
 }
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 - (void)setRefreshingWithStateOfTask:(NSURLSessionTask *)task {
     [[self af_notificationObserver] setRefreshingWithStateOfTask:task];
 }
+
 #endif
 
 - (void)setRefreshingWithStateOfOperation:(AFURLConnectionOperation *)operation {
@@ -67,8 +75,7 @@
 
 @implementation AFRefreshControlNotificationObserver
 
-- (instancetype)initWithActivityRefreshControl:(UIRefreshControl *)refreshControl
-{
+- (instancetype)initWithActivityRefreshControl:(UIRefreshControl *)refreshControl {
     self = [super init];
     if (self) {
         _refreshControl = refreshControl;
@@ -77,6 +84,7 @@
 }
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 - (void)setRefreshingWithStateOfTask:(NSURLSessionTask *)task {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 
@@ -100,6 +108,7 @@
 #pragma clang diagnostic pop
     }
 }
+
 #endif
 
 - (void)setRefreshingWithStateOfOperation:(AFURLConnectionOperation *)operation {
@@ -150,13 +159,13 @@
 
 - (void)dealloc {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
+
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidCompleteNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidResumeNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingTaskDidSuspendNotification object:nil];
 #endif
-    
+
     [notificationCenter removeObserver:self name:AFNetworkingOperationDidStartNotification object:nil];
     [notificationCenter removeObserver:self name:AFNetworkingOperationDidFinishNotification object:nil];
 }

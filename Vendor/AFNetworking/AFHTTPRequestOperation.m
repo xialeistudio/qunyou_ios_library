@@ -44,15 +44,15 @@ static dispatch_group_t http_request_operation_completion_group() {
 #pragma mark -
 
 @interface AFURLConnectionOperation ()
-@property (readwrite, nonatomic, strong) NSURLRequest *request;
-@property (readwrite, nonatomic, strong) NSURLResponse *response;
+@property(readwrite, nonatomic, strong) NSURLRequest *request;
+@property(readwrite, nonatomic, strong) NSURLResponse *response;
 @end
 
 @interface AFHTTPRequestOperation ()
-@property (readwrite, nonatomic, strong) NSHTTPURLResponse *response;
-@property (readwrite, nonatomic, strong) id responseObject;
-@property (readwrite, nonatomic, strong) NSError *responseSerializationError;
-@property (readwrite, nonatomic, strong) NSRecursiveLock *lock;
+@property(readwrite, nonatomic, strong) NSHTTPURLResponse *response;
+@property(readwrite, nonatomic, strong) id responseObject;
+@property(readwrite, nonatomic, strong) NSError *responseSerializationError;
+@property(readwrite, nonatomic, strong) NSRecursiveLock *lock;
 @end
 
 @implementation AFHTTPRequestOperation
@@ -105,8 +105,7 @@ static dispatch_group_t http_request_operation_completion_group() {
 #pragma mark - AFHTTPRequestOperation
 
 - (void)setCompletionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
+                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     // completionBlock is manually nilled out in AFURLConnectionOperation to break the retain cycle.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
@@ -155,9 +154,9 @@ static dispatch_group_t http_request_operation_completion_group() {
 
     u_int64_t offset = 0;
     if ([self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey]) {
-        offset = [(NSNumber *)[self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey] unsignedLongLongValue];
+        offset = [(NSNumber *) [self.outputStream propertyForKey:NSStreamFileCurrentOffsetKey] unsignedLongLongValue];
     } else {
-        offset = [(NSData *)[self.outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey] length];
+        offset = [(NSData *) [self.outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey] length];
     }
 
     NSMutableURLRequest *mutableURLRequest = [self.request mutableCopy];

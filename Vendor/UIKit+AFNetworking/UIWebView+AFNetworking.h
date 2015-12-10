@@ -42,12 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The request serializer used to serialize requests made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPRequestSerializer`.
  */
-@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
+@property(nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> *requestSerializer;
 
 /**
  The response serializer used to serialize responses made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPResponseSerializer`.
  */
-@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property(nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
 
 /**
  Asynchronously loads the specified request.
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)loadRequest:(NSURLRequest *)request
            progress:(nullable void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress
-            success:(nullable NSString * (^)(NSHTTPURLResponse *response, NSString *HTML))success
+            success:(nullable NSString *(^)(NSHTTPURLResponse *response, NSString *HTML))success
             failure:(nullable void (^)(NSError *error))failure;
 
 /**
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
            MIMEType:(nullable NSString *)MIMEType
    textEncodingName:(nullable NSString *)textEncodingName
            progress:(nullable void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))progress
-            success:(nullable NSData * (^)(NSHTTPURLResponse *response, NSData *data))success
+            success:(nullable NSData *(^)(NSHTTPURLResponse *response, NSData *data))success
             failure:(nullable void (^)(NSError *error))failure;
 
 @end

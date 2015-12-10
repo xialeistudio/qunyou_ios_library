@@ -47,8 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param delegate The alert view delegate.
  */
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 + (void)showAlertViewForTaskWithErrorOnCompletion:(NSURLSessionTask *)task
                                          delegate:(nullable id)delegate NS_EXTENSION_UNAVAILABLE_IOS("Not available in app extensions.");
+
 #endif
 
 /**
@@ -60,10 +62,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param otherButtonTitles The title of another button. Using this argument is equivalent to invoking addButtonWithTitle: with this title to add more buttons. Too many buttons can cause the alert view to scroll. For guidelines on the best ways to use an alert in an app, see "Temporary Views". Titles of additional buttons to add to the receiver, terminated with `nil`.
  */
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
 + (void)showAlertViewForTaskWithErrorOnCompletion:(NSURLSessionTask *)task
                                          delegate:(nullable id)delegate
                                 cancelButtonTitle:(nullable NSString *)cancelButtonTitle
                                 otherButtonTitles:(nullable NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION NS_EXTENSION_UNAVAILABLE_IOS("Not available in app extensions.");
+
 #endif
 
 ///------------------------------------------

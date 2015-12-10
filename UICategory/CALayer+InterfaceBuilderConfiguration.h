@@ -6,5 +6,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CALayer (InterfaceBuilderConfiguration)
-@property (nonatomic, assign) UIColor *borderUIColor;
+@property(nonatomic, assign) UIColor *borderUIColor;
 @end

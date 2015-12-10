@@ -41,22 +41,22 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The criteria by which server trust should be evaluated against the pinned SSL certificates. Defaults to `AFSSLPinningModeNone`.
  */
-@property (readonly, nonatomic, assign) AFSSLPinningMode SSLPinningMode;
+@property(readonly, nonatomic, assign) AFSSLPinningMode SSLPinningMode;
 
 /**
  The certificates used to evaluate server trust according to the SSL pinning mode. By default, this property is set to any (`.cer`) certificates included in the app bundle. Note that if you create an array with duplicate certificates, the duplicate certificates will be removed. Note that if pinning is enabled, `evaluateServerTrust:forDomain:` will return true if any pinned certificate matches.
  */
-@property (nonatomic, strong, nullable) NSArray *pinnedCertificates;
+@property(nonatomic, strong, nullable) NSArray *pinnedCertificates;
 
 /**
  Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to `NO`.
  */
-@property (nonatomic, assign) BOOL allowInvalidCertificates;
+@property(nonatomic, assign) BOOL allowInvalidCertificates;
 
 /**
  Whether or not to validate the domain name in the certificate's CN field. Defaults to `YES`.
  */
-@property (nonatomic, assign) BOOL validatesDomainName;
+@property(nonatomic, assign) BOOL validatesDomainName;
 
 ///-----------------------------------------
 /// @name Getting Specific Security Policies
