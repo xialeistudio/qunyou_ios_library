@@ -1,0 +1,123 @@
+//
+//  UIUtil.m
+//  IOS
+//
+//  Created by xialeistudio on 15/11/30.
+//  Copyright © 2015年 Group Friend Information. All rights reserved.
+//
+
+#import "UIUtil.h"
+
+@implementation UIUtil
+/**
+ * 单例
+ */
++ (instancetype)sharedInstance {
+    static UIUtil *instance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
+}
+
+
+/**
+ * 保存图片
+ */
+- (NSString *)storeImageToSandbox:(UIImage *)image :(CGFloat)quality {
+    NSData *imageData = UIImageJPEGRepresentation(image, quality);
+    NSString *name = [[[NSUUID UUID] UUIDString] stringByAppendingString:@".jpg"];
+    NSString *path = [NSHomeDirectory() stringByAppendingString:[@"/Documents/" stringByAppendingString:name]];
+    [imageData writeToFile:path atomically:NO];
+    return path;
+}
+
+
+/**
+ *  选择图片
+ *
+ *  @param sourceType     来源地址
+ *  @param viewController 视图
+ *  @param error          错误
+ *
+ *  @return 是否成功
+ */
+- (BOOL)selectPicture:(UIImagePickerControllerSourceType)sourceType :(UIViewController <UIUtilImageDelegate> *)viewController :(NSError **)error {
+    if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        NSDictionary *info = @{NSLocalizedDescriptionKey : @"UnSupported source type"};
+        *error = [NSError errorWithDomain:@"com.xialeistudio.core.UIUtil" code:-1 userInfo:info];
+        return NO;
+    }
+
+    //委托处理
+    imageDelegate = viewController;
+
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = sourceType;
+    picker.allowsEditing = YES;
+    picker.delegate = self;
+    [viewController presentViewController:picker animated:YES completion:nil];
+    return YES;
+}
+
+/**
+ * 缩放图片
+ */
+- (UIImage *)scaleImage:(UIImage *)image scale:(float)scaleSize {
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scaleSize, image.size.height * scaleSize));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height * scaleSize];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+/**
+ * 自定义尺寸
+ */
+- (UIImage *)resizeImage:(UIImage *)image width:(float)width height:(float)height {
+    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    [image drawInRect:CGRectMake(0, 0, width, height];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+/**
+ * 保存图片到相册
+ */
+- (void)storeImageToPhotoAlbum:(UIImage *)image {
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+}
+
+/**
+ * 截屏
+ */
+- (UIImage *)screenShot {
+    UIView *view = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:YES];
+    UIGraphicsBeginImageContext(view.frame.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
+/**
+ *  取消图片选择回调
+ */
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [imageDelegate didSelectImage:nil];
+    }];
+}
+
+/**
+ * 选择图片回调
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [imageDelegate didSelectImage:info];
+    }];
+}
+@end
