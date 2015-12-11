@@ -25,7 +25,7 @@
 /**
  * 保存图片
  */
-- (NSString *)storeImageToSandbox:(UIImage *)image :(CGFloat)quality {
++ (NSString *)storeImageToSandbox:(UIImage *)image :(CGFloat)quality {
     NSData *imageData = UIImageJPEGRepresentation(image, quality);
     NSString *name = [[[NSUUID UUID] UUIDString] stringByAppendingString:@".jpg"];
     NSString *path = [NSHomeDirectory() stringByAppendingString:[@"/Documents/" stringByAppendingString:name]];
@@ -64,7 +64,7 @@
 /**
  * 缩放图片
  */
-- (UIImage *)scaleImage:(UIImage *)image scale:(float)scaleSize {
++ (UIImage *)scaleImage:(UIImage *)image scale:(float)scaleSize {
     UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scaleSize, image.size.height * scaleSize));
     [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height * scaleSize)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -75,7 +75,7 @@
 /**
  * 自定义尺寸
  */
-- (UIImage *)resizeImage:(UIImage *)image width:(float)width height:(float)height {
++ (UIImage *)resizeImage:(UIImage *)image width:(float)width height:(float)height {
     UIGraphicsBeginImageContext(CGSizeMake(width, height));
     [image drawInRect:CGRectMake(0, 0, width, height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -86,11 +86,11 @@
 /**
  * 保存图片到相册
  */
-- (void)storeImageToPhotoAlbum:(UIImage *)image {
++ (void)storeImageToPhotoAlbum:(UIImage *)image {
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
 }
 
-- (UIImage *)screenShot:(UIView *)view {
++ (UIImage *)screenShot:(UIView *)view {
     CGRect rect = view.frame;
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();

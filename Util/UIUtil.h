@@ -32,7 +32,7 @@
 /**
  * 保存图片到沙箱
  */
-- (NSString *)storeImageToSandbox:(UIImage *)image
++ (NSString *)storeImageToSandbox:(UIImage *)image
         :(CGFloat)quality;
 
 /**
@@ -52,23 +52,23 @@
 /**
  * 调整图片尺寸
  */
--(UIImage *)scaleImage:(UIImage *)image
++(UIImage *)scaleImage:(UIImage *)image
                    scale:(float)scaleSize;
 
 /**
  * 自定义长宽
  */
--(UIImage *)resizeImage:(UIImage *)image
++(UIImage *)resizeImage:(UIImage *)image
                   width:(float)width
                  height:(float)height;
 
 /**
  * 存储图片到图库
  */
--(void)storeImageToPhotoAlbum:(UIImage *)image;
++(void)storeImageToPhotoAlbum:(UIImage *)image;
 
 /**
  * 截屏
  */
--(UIImage *) screenShot:(UIView *)view;
++(UIImage *) screenShot:(UIView *)view;
 @end
