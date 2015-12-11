@@ -7,6 +7,8 @@
 //
 
 #import "HttpUtil.h"
+#import "AFNetworking.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation HttpUtil
 @synthesize api;

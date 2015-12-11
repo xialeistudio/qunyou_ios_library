@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
-#import "AFNetworkActivityIndicatorManager.h"
+
+@class AFHTTPRequestOperationManager;
+@class AFHTTPRequestOperation;
 
 @interface HttpUtil : NSObject
 @property(nonatomic, assign) NSString *api;
