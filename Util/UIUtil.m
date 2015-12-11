@@ -90,16 +90,14 @@
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
 }
 
-/**
- * 截屏
- */
-- (UIImage *)screenShot {
-    UIView *view = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:YES];
-    UIGraphicsBeginImageContext(view.frame.size);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+- (UIImage *)screenShot:(UIView *)view {
+    CGRect rect = view.frame;
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return image;
+    return img;
 }
 
 

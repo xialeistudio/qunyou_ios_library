@@ -20,6 +20,7 @@
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         instance = [[self alloc] init];
+        [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     });
     return instance;
 }

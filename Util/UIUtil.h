@@ -70,5 +70,5 @@
 /**
  * 截屏
  */
--(UIImage *) screenShot;
+-(UIImage *) screenShot:(UIView *)view;
 @end
