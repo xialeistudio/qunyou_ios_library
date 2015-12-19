@@ -12,10 +12,10 @@
 /**
  * 检测手机号码是否合法
  */
-+(BOOL)isPhone:(NSString *)string;
++ (BOOL)isPhone:(NSString *)string;
 
 /**
  * 检测邮箱是否合法
  */
-+(BOOL)isEmail:(NSString *)string;
++ (BOOL)isEmail:(NSString *)string;
 @end
