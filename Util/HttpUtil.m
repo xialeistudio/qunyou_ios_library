@@ -11,8 +11,6 @@
 #import "AFNetworkActivityIndicatorManager.h"
 
 @implementation HttpUtil
-@synthesize api;
-@synthesize timeout;
 
 /**
  * 单例
@@ -36,7 +34,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //超时设置
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    manager.requestSerializer.timeoutInterval = timeout;
+    manager.requestSerializer.timeoutInterval = _timeout;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     return manager;
 }
@@ -94,7 +92,7 @@
  * 保存Cookies
  */
 - (void)storeCookies {
-    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:api]];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:_api]];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
     [[NSUserDefaults standardUserDefaults] setValue:data forKey:@"app.cookies"];
 }
