@@ -69,4 +69,8 @@
  * 导航栏透明
  */
 +(void)transparentNavigationBar:(UINavigationBar *)navigationBar;
+/**
+ * 隐藏键盘
+ */
++(void)hideKeyboardWithView:(UIView *)view;
 @end

@@ -106,6 +106,16 @@
     navigationBar.translucent = YES;
 }
 
++ (void)hideKeyboardWithView:(UIView *)view {
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    [view addGestureRecognizer:tapGestureRecognizer];
+}
+
++ (void)hideKeyboard {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+}
+
 
 /**
  *  取消图片选择回调
