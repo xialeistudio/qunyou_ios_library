@@ -423,7 +423,7 @@
 		42E13477C00DC24A9A7411C6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = Vikaa;
+				ORGANIZATIONNAME = "Group Friend Information";
 			};
 			buildConfigurationList = 42E139E8003CDBCFC61DF380 /* Build configuration list for PBXProject "Library" */;
 			compatibilityVersion = "Xcode 3.2";

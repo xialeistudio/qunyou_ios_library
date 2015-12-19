@@ -36,13 +36,7 @@
         :(CGFloat)quality;
 
 /**
- *  选择图片
- *
- *  @param sourceType     来源类型
- *  @param viewController 视图
- *  @param error          错误
- *
- *  @return 是否出错
+ * 选择图片
  */
 - (BOOL)selectPicture
         :(UIImagePickerControllerSourceType)sourceType

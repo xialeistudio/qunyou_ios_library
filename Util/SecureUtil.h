@@ -1,6 +1,6 @@
 //
 // Created by xialeistudio on 15/12/11.
-// Copyright (c) 2015 Vikaa. All rights reserved.
+// Copyright (c) 2015 Group Friend Information. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

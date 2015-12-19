@@ -45,6 +45,8 @@
 
 /**
  * 上传请求
+ * @param fileName 上传文件域名称
+ * @param filePath 本地文件路径
  */
 - (void)uploadRequest:(NSString *)url
            withParams:(NSDictionary *)params
@@ -57,6 +59,7 @@
 
 /**
  * 下载请求
+ * @param filePath 本地文件路径
  */
 - (void)downloadRequest:(NSString *)url
              withParams:(NSDictionary *)params
