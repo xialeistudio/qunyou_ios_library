@@ -100,6 +100,12 @@
     return img;
 }
 
++ (void)transparentNavigationBar:(UINavigationBar *)navigationBar {
+    [navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    navigationBar.shadowImage = [UIImage new];
+    navigationBar.translucent = YES;
+}
+
 
 /**
  *  取消图片选择回调

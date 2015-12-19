@@ -65,4 +65,8 @@
  * 截屏
  */
 + (UIImage *)screenShot:(UIView *)view;
+/**
+ * 导航栏透明
+ */
++(void)transparentNavigationBar:(UINavigationBar *)navigationBar;
 @end
