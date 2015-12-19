@@ -18,7 +18,7 @@
 		42E131CFEBC212BAF2B7FF98 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E13FE370137AB3C51C6570 /* UIRefreshControl+AFNetworking.m */; };
 		42E13224C839450B8D784A5D /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E135A7E27BD66B1A207150 /* AFNetworkActivityIndicatorManager.m */; };
 		42E13232703BC2B03DF0BEEC /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E13A02D892BED2C739D991 /* UIView+WebCacheOperation.m */; };
-		42E132348F8681D8BB212403 /* DeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13AD532A0CF307FBBDA8A /* DeviceUtil.h */; };
+		42E132348F8681D8BB212403 /* DeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13AD532A0CF307FBBDA8A /* DeviceUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42E132A16DD5599AF39D359C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E135F0957E02A829CC5D08 /* AFHTTPRequestOperationManager.m */; };
 		42E132B115146312E5AD6024 /* SDWebImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E1322524F236AF00A43421 /* SDWebImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42E132BF89CA078129A9D2F4 /* UITextField+PlaceHolderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E13994DD2BCE6517715AA3 /* UITextField+PlaceHolderColor.m */; };
@@ -57,7 +57,7 @@
 		42E13B05DBC4A70C03FAD9F4 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E13F141F636DF285D8F232 /* SDWebImageDecoder.m */; };
 		42E13B8207760315A5AF1BF6 /* SDWebImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13763CF68B68A8A8A7604 /* SDWebImageOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42E13B8416A8F3935FA99107 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E130B951F4E3DDFD65A851 /* AFHTTPSessionManager.m */; };
-		42E13BBB2D224A537A707793 /* AppUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13D6E2C438C3E3D2A27F3 /* AppUtil.h */; };
+		42E13BBB2D224A537A707793 /* AppUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13D6E2C438C3E3D2A27F3 /* AppUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42E13C6A582F2E8810069EB5 /* SDWebImageCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E1386156A2A99AD3FF0BA6 /* SDWebImageCompat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42E13D07B830BF8F96DF656A /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E1362A33F348571656E1FB /* SDWebImagePrefetcher.m */; };
 		42E13D122E34B10D03A9CADA /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E138A83152D7B13FF95AB8 /* UIButton+WebCache.m */; };
@@ -404,9 +404,9 @@
 				42E135EA0417D237D7225C35 /* JSONKit.h in Headers */,
 				8C49DEEF1C198ABE001E1AA8 /* HttpUtil.h in Headers */,
 				8C49DEF01C198ABE001E1AA8 /* RegexTool.h in Headers */,
-				8C49DEF11C198ABE001E1AA8 /* UIUtil.h in Headers */,
 				42E132348F8681D8BB212403 /* DeviceUtil.h in Headers */,
 				42E13BBB2D224A537A707793 /* AppUtil.h in Headers */,
+				8C49DEF11C198ABE001E1AA8 /* UIUtil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

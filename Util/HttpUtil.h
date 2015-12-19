@@ -32,7 +32,7 @@
         withParams:(NSDictionary *)params
    successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback
      errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback
-        withParams:(AFHTTPRequestOperationManager *)manager;
+        withManager:(AFHTTPRequestOperationManager *)manager;
 
 /**
  * POST请求
@@ -41,7 +41,7 @@
          withParams:(NSDictionary *)params
     successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback
       errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback
-         withParams:(AFHTTPRequestOperationManager *)manager;
+        withManager:(AFHTTPRequestOperationManager *)manager;
 
 /**
  * 上传请求
