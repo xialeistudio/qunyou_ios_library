@@ -71,8 +71,6 @@
 		8C49DEEF1C198ABE001E1AA8 /* HttpUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13F8609419932CF93129B /* HttpUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C49DEF01C198ABE001E1AA8 /* RegexTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13B791279C417211655A9 /* RegexTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C49DEF11C198ABE001E1AA8 /* UIUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E13542F5A8E52EEF6BB167 /* UIUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8C849B6D1C25029200AA9745 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C849B661C25023000AA9745 /* UIKit.framework */; };
-		8C849B701C25029D00AA9745 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C849B681C25023600AA9745 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -176,8 +174,6 @@
 		42E13F8609419932CF93129B /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
 		42E13FBA4B164EE9962DC1C4 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		42E13FE370137AB3C51C6570 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
-		8C849B661C25023000AA9745 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		8C849B681C25023600AA9745 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,8 +181,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C849B701C25029D00AA9745 /* Foundation.framework in Frameworks */,
-				8C849B6D1C25029200AA9745 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,8 +345,6 @@
 		42E13AF00369A956B6AC7DEC /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				8C849B681C25023600AA9745 /* Foundation.framework */,
-				8C849B661C25023000AA9745 /* UIKit.framework */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
