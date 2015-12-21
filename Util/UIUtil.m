@@ -21,7 +21,6 @@
     return instance;
 }
 
-
 /**
  * 保存图片
  */
@@ -111,6 +110,18 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     [view addGestureRecognizer:tapGestureRecognizer];
 }
+
++ (void)showAlert:(UIViewController *)viewController withTitle:(NSString *)title withMessage:(NSString *)message withOkActionTitle:(NSString *)okTitle withCancelActionTitle:(NSString *)cancelTitle withOkAction:(void (^)(UIAlertAction *action))okAction withCancelAction:(void (^)(UIAlertAction *action))cancelAction {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:okTitle ? okTitle : @"确定" style:UIAlertActionStyleDefault handler:okAction];
+    [alertController addAction:actionOk];
+    if (cancelAction) {
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:cancelTitle ? cancelTitle : @"取消" style:UIAlertActionStyleDefault handler:cancelAction];
+        [alertController addAction:actionCancel];
+    }
+    [viewController presentViewController:alertController animated:YES completion:nil];
+}
+
 
 + (void)hideKeyboard {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];

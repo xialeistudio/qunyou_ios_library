@@ -8,6 +8,7 @@
 
 @interface AppUtil : NSObject
 
+
 /**
  * 获取APP版本
  */
@@ -17,4 +18,9 @@
  * 获取APP Build
  */
 + (NSString *)getAppBuild;
+
+/**
+ * 打开AppStore
+ */
++(void)openAppStore:(NSString *)appID;
 @end

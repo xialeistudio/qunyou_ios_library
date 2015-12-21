@@ -16,4 +16,10 @@
 + (NSString *)getAppBuild {
     return [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
 }
+
++ (void)openAppStore:(NSString *)appID {
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/us/app/keynote/id%@?mt=8",appID];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
 @end

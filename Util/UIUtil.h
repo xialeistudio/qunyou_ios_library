@@ -29,6 +29,7 @@
  */
 + (instancetype)sharedInstance;
 
+
 /**
  * 保存图片到沙箱
  */
@@ -65,12 +66,25 @@
  * 截屏
  */
 + (UIImage *)screenShot:(UIView *)view;
+
 /**
  * 导航栏透明
  */
-+(void)transparentNavigationBar:(UINavigationBar *)navigationBar;
++ (void)transparentNavigationBar:(UINavigationBar *)navigationBar;
+
 /**
  * 隐藏键盘
  */
-+(void)hideKeyboardWithView:(UIView *)view;
++ (void)hideKeyboardWithView:(UIView *)view;
+
+/**
+ * Alert
+ */
++ (void)    showAlert:(UIViewController *)viewController
+            withTitle:(NSString *)title
+          withMessage:(NSString *)message
+    withOkActionTitle:(NSString *)okTitle
+withCancelActionTitle:(NSString *)cancelTitle
+         withOkAction:(void (^)(UIAlertAction *action))okAction
+     withCancelAction:(void (^)(UIAlertAction *action))cancelAction;
 @end
