@@ -123,5 +123,17 @@
     }
 }
 
+- (void)cleanCookies {
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *cookies = [NSArray arrayWithArray:[cookieJar cookies]];
+    for (NSHTTPCookie *cookie in cookies) {
+        [cookieJar deleteCookie:cookie];
+    }
+    //删除cookies
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"app.cookies"];
+    [defaults synchronize];
+}
+
 
 @end

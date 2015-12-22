@@ -77,4 +77,9 @@
  * 加载Cookies
  */
 - (void)loadCookies;
+
+/**
+ * 清空cookies
+ */
+-(void)cleanCookies;
 @end
