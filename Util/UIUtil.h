@@ -21,7 +21,7 @@
 @end
 
 @interface UIUtil : NSObject
-        <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+        <UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIAlertViewDelegate> {
     id <UIUtilImageDelegate> imageDelegate;
 }
 /**
@@ -80,7 +80,7 @@
 /**
  * Alert
  */
-+ (void)    showAlert:(UIViewController *)viewController
+- (void)    showAlert:(UIViewController *)viewController
             withTitle:(NSString *)title
           withMessage:(NSString *)message
     withOkActionTitle:(NSString *)okTitle
