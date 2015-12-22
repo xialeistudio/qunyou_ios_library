@@ -4,6 +4,7 @@
 //
 
 #import "CommonUtil.h"
+#import "NSString+Compatibility.h"
 
 
 @implementation CommonUtil {
@@ -17,7 +18,7 @@
 }
 
 + (NSString *)thumbQiniu:(NSString *)url width:(NSString *)width height:(NSString *)height {
-    if ([url containsString:@"qiniudn"] || [url containsString:@"clouddn"]) {
+    if ([url containsStringCompatibility:@"qiniudn"] || [url containsStringCompatibility:@"clouddn"]) {
         return [NSString stringWithFormat:@"%@?imageView2/1/w/%@/h%@", url, width, height];
     }
     return url;

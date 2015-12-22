@@ -9,6 +9,7 @@
 #import "HttpUtil.h"
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "NSString+Compatibility.h"
 
 @implementation HttpUtil
 
@@ -43,7 +44,7 @@
  * GET请求
  */
 - (void)getRequest:(NSString *)url withParams:(NSDictionary *)params successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback withManager:(AFHTTPRequestOperationManager *)manager {
-    if(![url containsString:@"http://"]){
+    if(![url containsStringCompatibility:@"http://"]){
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
@@ -54,7 +55,7 @@
  * POST请求
  */
 - (void)postRequest:(NSString *)url withParams:(NSDictionary *)params successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback withManager:(AFHTTPRequestOperationManager *)manager {
-    if(![url containsString:@"http://"]){
+    if(![url containsStringCompatibility:@"http://"]){
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
@@ -65,7 +66,7 @@
  * 上传请求
  */
 - (void)uploadRequest:(NSString *)url withParams:(NSDictionary *)params withFieldName:(NSString *)fileName withFilePath:(NSString *)filePath successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback progressCallback:(void (^)(long, long))progressCallback withManager:(AFHTTPRequestOperationManager *)manager {
-    if(![url containsString:@"http://"]){
+    if(![url containsStringCompatibility:@"http://"]){
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
@@ -84,7 +85,7 @@
  * 下载请求
  */
 - (void)downloadRequest:(NSString *)url withParams:(NSDictionary *)params withLocalPath:(NSString *)filePath successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback progressCallback:(void (^)(long, long))progressCallback {
-    if(![url containsString:@"http://"]){
+    if(![url containsStringCompatibility:@"http://"]){
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
@@ -131,7 +132,7 @@
     }
     //删除cookies
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"app.cookies"];
+    [defaults removeObjectForKey:@"sessionCookies"];
     [defaults synchronize];
 }
 
