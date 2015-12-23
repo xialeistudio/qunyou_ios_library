@@ -18,7 +18,7 @@
 }
 
 + (void)openAppStore:(NSString *)appID {
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/us/app/keynote/id%@?mt=8",appID];
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",appID];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 

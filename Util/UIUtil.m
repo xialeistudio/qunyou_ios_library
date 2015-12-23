@@ -113,23 +113,27 @@
 }
 
 - (void)showAlert:(UIViewController *)viewController withTitle:(NSString *)title withMessage:(NSString *)message withOkActionTitle:(NSString *)okTitle withCancelActionTitle:(NSString *)cancelTitle withOkAction:(void (^)(UIAlertAction *action))okAction withCancelAction:(void (^)(UIAlertAction *action))cancelAction {
-    if ([DeviceUtil getSystemVersion] >= 8.0) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:okTitle ? okTitle : @"确定" style:UIAlertActionStyleDefault handler:okAction];
-        [alertController addAction:actionOk];
-        if (cancelAction) {
-            UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:cancelTitle ? cancelTitle : @"取消" style:UIAlertActionStyleDefault handler:cancelAction];
-            [alertController addAction:actionCancel];
-        }
-        [viewController presentViewController:alertController animated:YES completion:nil];
-    } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
-        [alertView show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:okTitle ? okTitle : @"确定" style:UIAlertActionStyleDefault handler:okAction];
+    [alertController addAction:actionOk];
+    if (cancelAction) {
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:cancelTitle ? cancelTitle : @"取消" style:UIAlertActionStyleDefault handler:cancelAction];
+        [alertController addAction:actionCancel];
     }
+    [viewController presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)showAlert:(UIViewController *)viewController withTitle:(NSString *)title withMessage:(NSString *)message withOkActionTitle:(NSString *)okTitle withCancelActionTitle:(NSString *)cancelTitle withDelegate:(id <UIUtilAlertDelegate>)delegate {
+    alertDelegate = delegate;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
+    [alertView show];
+}
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"clicked:%@", buttonIndex);
+    if ([alertDelegate respondsToSelector:@selector(alertView:didClickButton:)]) {
+        [alertDelegate alertView:alertView didClickButton:buttonIndex];
+    }
 }
 
 + (void)hideKeyboard {

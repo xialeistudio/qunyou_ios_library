@@ -20,9 +20,17 @@
 
 @end
 
+@protocol UIUtilAlertDelegate <NSObject>
+@optional
+- (void)
+     alertView:(UIAlertView *)alertView
+didClickButton:(NSInteger)buttonIndex;
+@end
+
 @interface UIUtil : NSObject
-        <UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIAlertViewDelegate> {
+        <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate> {
     id <UIUtilImageDelegate> imageDelegate;
+    id <UIUtilAlertDelegate> alertDelegate;
 }
 /**
  * 单例
@@ -86,5 +94,13 @@
     withOkActionTitle:(NSString *)okTitle
 withCancelActionTitle:(NSString *)cancelTitle
          withOkAction:(void (^)(UIAlertAction *action))okAction
-     withCancelAction:(void (^)(UIAlertAction *action))cancelAction;
+     withCancelAction:(void (^)(UIAlertAction *action))cancelAction NS_AVAILABLE_IOS(8_0);
+
+
+- (void)    showAlert:(UIViewController *)viewController
+            withTitle:(NSString *)title
+          withMessage:(NSString *)message
+    withOkActionTitle:(NSString *)okTitle
+withCancelActionTitle:(NSString *)cancelTitle
+         withDelegate:(id <UIUtilAlertDelegate>)delegate;
 @end
