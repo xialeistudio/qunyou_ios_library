@@ -34,6 +34,12 @@
     return status;
 }
 
+- (void)listenNetwork:(void (^)(AFNetworkReachabilityStatus))callback {
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:callback];
+}
+
+
 /**
  * Http请求
  */

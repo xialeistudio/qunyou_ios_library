@@ -26,6 +26,10 @@
  */
 -(AFNetworkReachabilityStatus)getNetworkStatus;
 /**
+ * 监听网络状况
+ */
+-(void)listenNetwork:(void(^)(AFNetworkReachabilityStatus))callback;
+/**
  * 获取默认manager
  */
 - (AFHTTPRequestOperationManager *)getDefaultHttpManager;
