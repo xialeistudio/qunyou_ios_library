@@ -18,8 +18,17 @@
 }
 
 + (void)openAppStore:(NSString *)appID {
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",appID];
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
++ (id)loadMutableDataFromLocal:(NSString *)key {
+    return [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:key]];
+}
+
++ (void)storeMutableDataToLocal:(id)data forKey:(NSString *)key {
+    NSData *_data = [NSKeyedArchiver archivedDataWithRootObject:data];
+    [[NSUserDefaults standardUserDefaults] setObject:_data forKey:key];
 }
 
 @end

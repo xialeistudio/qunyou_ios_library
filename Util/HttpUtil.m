@@ -7,7 +7,6 @@
 //
 
 #import "HttpUtil.h"
-#import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "NSString+Compatibility.h"
 
@@ -24,6 +23,15 @@
         [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     });
     return instance;
+}
+
+- (AFNetworkReachabilityStatus)getNetworkStatus {
+    __block AFNetworkReachabilityStatus status;
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status1) {
+        status = status1;
+    }];
+    return status;
 }
 
 /**
@@ -44,7 +52,7 @@
  * GET请求
  */
 - (void)getRequest:(NSString *)url withParams:(NSDictionary *)params successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback withManager:(AFHTTPRequestOperationManager *)manager {
-    if(![url containsStringCompatibility:@"http://"]){
+    if (![url containsStringCompatibility:@"http://"]) {
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
@@ -55,7 +63,7 @@
  * POST请求
  */
 - (void)postRequest:(NSString *)url withParams:(NSDictionary *)params successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback withManager:(AFHTTPRequestOperationManager *)manager {
-    if(![url containsStringCompatibility:@"http://"]){
+    if (![url containsStringCompatibility:@"http://"]) {
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
@@ -66,7 +74,7 @@
  * 上传请求
  */
 - (void)uploadRequest:(NSString *)url withParams:(NSDictionary *)params withFieldName:(NSString *)fileName withFilePath:(NSString *)filePath successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback progressCallback:(void (^)(long, long))progressCallback withManager:(AFHTTPRequestOperationManager *)manager {
-    if(![url containsStringCompatibility:@"http://"]){
+    if (![url containsStringCompatibility:@"http://"]) {
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
@@ -85,7 +93,7 @@
  * 下载请求
  */
 - (void)downloadRequest:(NSString *)url withParams:(NSDictionary *)params withLocalPath:(NSString *)filePath successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback progressCallback:(void (^)(long, long))progressCallback {
-    if(![url containsStringCompatibility:@"http://"]){
+    if (![url containsStringCompatibility:@"http://"]) {
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];

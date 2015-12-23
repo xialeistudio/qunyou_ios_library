@@ -23,4 +23,13 @@
  * 打开AppStore
  */
 +(void)openAppStore:(NSString *)appID;
+/**
+ * 存储对象
+ */
++(void)storeMutableDataToLocal:(id)data
+                 forKey:(NSString *)key;
+/**
+ * 读取对象
+ */
++(id)loadMutableDataFromLocal:(NSString *)key;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFNetworking.h"
 
 @class AFHTTPRequestOperationManager;
 @class AFHTTPRequestOperation;
@@ -20,6 +21,10 @@
  */
 + (instancetype)sharedInstance;
 
+/**
+ * 获取网络状态
+ */
+-(AFNetworkReachabilityStatus)getNetworkStatus;
 /**
  * 获取默认manager
  */
