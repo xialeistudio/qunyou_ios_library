@@ -17,7 +17,7 @@
 /**
  * 保存联系人
  */
-+ (void)saveContact:(UIViewController *)viewController
++ (BOOL)saveContact:(UIViewController *)viewController
            delegate:(id <CNContactViewControllerDelegate>)delegate
            realname:(NSString *)realname
               phone:(NSString *)phone
