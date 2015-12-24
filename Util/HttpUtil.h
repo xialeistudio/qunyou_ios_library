@@ -15,20 +15,24 @@
 @interface HttpUtil : NSObject
 @property(nonatomic, assign) NSString *api;
 @property(nonatomic, assign) float timeout;
+@property(nonatomic, strong) NSString *userAgent;
 
 /**
  * 单例
  */
+
 + (instancetype)sharedInstance;
 
 /**
  * 获取网络状态
  */
--(AFNetworkReachabilityStatus)getNetworkStatus;
+- (AFNetworkReachabilityStatus)getNetworkStatus;
+
 /**
  * 监听网络状况
  */
--(void)listenNetwork:(void(^)(AFNetworkReachabilityStatus))callback;
+- (void)listenNetwork:(void (^)(AFNetworkReachabilityStatus))callback;
+
 /**
  * 获取默认manager
  */
@@ -41,7 +45,7 @@
         withParams:(NSDictionary *)params
    successCallback:(void (^)(AFHTTPRequestOperation *, id))successCallback
      errorCallback:(void (^)(AFHTTPRequestOperation *, NSError *))errorCallback
-        withManager:(AFHTTPRequestOperationManager *)manager;
+       withManager:(AFHTTPRequestOperationManager *)manager;
 
 /**
  * POST请求
@@ -90,5 +94,5 @@
 /**
  * 清空cookies
  */
--(void)cleanCookies;
+- (void)cleanCookies;
 @end

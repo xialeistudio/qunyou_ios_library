@@ -51,6 +51,7 @@
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
     manager.requestSerializer.timeoutInterval = _timeout;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    [manager.requestSerializer setValue:_userAgent forHTTPHeaderField:@"User-Agent"];
     return manager;
 }
 
