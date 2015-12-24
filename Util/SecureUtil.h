@@ -10,6 +10,5 @@
 /**
  * md5加密
  */
-- (NSString *)md5:(NSString *)string
-           length:(unsigned int)length;
++ (NSString *)md5:(NSString *)string;
 @end

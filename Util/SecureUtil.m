@@ -10,17 +10,13 @@
 @implementation SecureUtil {
 
 }
-- (NSString *)md5:(NSString *)string
-           length:(unsigned int)length {
-    const char *chars = [string UTF8String];
-    unsigned char result[length];
-    CC_MD5(chars, length, result);
-    NSMutableString *hash = [[NSMutableString alloc] init];
-
-    for (int i = 0; i < length; ++i) {
-        [hash appendFormat:@"%02X", result[i]];
-    }
-    return hash;
++ (NSString *)md5:(NSString *)string {
+    const char *cStr = [string UTF8String];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(cStr, string.length, digest);
+    NSMutableString *result = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [result appendFormat:@"%02x", digest[i]];
+    return result;
 }
-
 @end
