@@ -18,15 +18,15 @@
 }
 
 + (NSString *)thumbQiniu:(NSString *)url width:(NSString *)width height:(NSString *)height {
-    if ([url containsStringCompatibility:@"qiniudn"] || [url containsStringCompatibility:@"clouddn"]) {
+    if ([url containsStringCompatibility:@"qiniudn"] || [url containsStringCompatibility:@"clouddn"] || [url containsStringCompatibility:@"static.ddhigh.com"]) {
         return [NSString stringWithFormat:@"%@?imageView2/1/w/%@/h%@", url, width, height];
     }
     return url;
 }
 
 + (NSString *)thumbQiniu:(id)url width:(NSString *)width height:(NSString *)height type:(NSString *)type {
-    if ([url containsStringCompatibility:@"qiniudn"] || [url containsStringCompatibility:@"clouddn"]) {
-        return [NSString stringWithFormat:@"%@?imageView2/%@/w/%@/h%@", type, url, width, height];
+    if ([url containsStringCompatibility:@"qiniudn"] || [url containsStringCompatibility:@"clouddn"] || [url containsStringCompatibility:@"static.ddhigh.com"]) {
+        return [NSString stringWithFormat:@"%@?imageView2/%@/w/%@/h%@", url, type, width, height];
     }
     return url;
 }
