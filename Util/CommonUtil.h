@@ -18,4 +18,6 @@
 +(NSString *)thumbQiniu:(NSString *)url
                   width:(NSString *)width
                  height:(NSString *)height;
+
++ (NSString *)thumbQiniu:(id)o width:(NSString *)width height:(NSString *)height type:(NSString *)type;
 @end

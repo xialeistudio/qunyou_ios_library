@@ -24,4 +24,10 @@
     return url;
 }
 
++ (NSString *)thumbQiniu:(id)url width:(NSString *)width height:(NSString *)height type:(NSString *)type {
+    if ([url containsStringCompatibility:@"qiniudn"] || [url containsStringCompatibility:@"clouddn"]) {
+        return [NSString stringWithFormat:@"%@?imageView2/%@/w/%@/h%@", type, url, width, height];
+    }
+    return url;
+}
 @end

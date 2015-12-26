@@ -23,7 +23,8 @@
 }
 
 + (id)loadMutableDataFromLocal:(NSString *)key {
-    return [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:key]];
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    return data?[NSKeyedUnarchiver unarchiveObjectWithData:data]:nil;
 }
 
 + (void)storeMutableDataToLocal:(id)data forKey:(NSString *)key {
