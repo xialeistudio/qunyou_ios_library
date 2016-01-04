@@ -63,7 +63,20 @@
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
-    [[_manager GET:url parameters:params success:successCallback failure:errorCallback] start];
+    [[_manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation,id data){
+        if([data isKindOfClass:[NSDictionary class]]){
+            NSDictionary *dic = data;
+            if([dic[@"errcode"] longValue] !=0){
+                if(errorCallback){
+                    errorCallback(operation, [NSError errorWithDomain:@"com.vikaa.qunyou" code:-1 userInfo:@{NSLocalizedDescriptionKey:dic[@"errmsg"]}]);
+                }
+                return;
+            }
+            successCallback(operation,data);
+            return;
+        }
+        successCallback(operation,data);
+    } failure:errorCallback] start];
 }
 
 /**
@@ -74,7 +87,20 @@
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
-    [[_manager POST:url parameters:params success:successCallback failure:errorCallback] start];
+    [[_manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation,id data){
+        if([data isKindOfClass:[NSDictionary class]]){
+            NSDictionary *dic = data;
+            if([dic[@"errcode"] longValue] !=0){
+                if(errorCallback){
+                    errorCallback(operation, [NSError errorWithDomain:@"com.vikaa.qunyou" code:-1 userInfo:@{NSLocalizedDescriptionKey:dic[@"errmsg"]}]);
+                }
+                return;
+            }
+            successCallback(operation,data);
+            return;
+        }
+        successCallback(operation,data);
+    } failure:errorCallback] start];
 }
 
 /**
