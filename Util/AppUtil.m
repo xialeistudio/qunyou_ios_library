@@ -30,6 +30,7 @@
 + (void)storeMutableDataToLocal:(id)data forKey:(NSString *)key {
     NSData *_data = [NSKeyedArchiver archivedDataWithRootObject:data];
     [[NSUserDefaults standardUserDefaults] setObject:_data forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
