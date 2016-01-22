@@ -27,8 +27,7 @@
 
 - (AFNetworkReachabilityStatus)getNetworkStatus {
     __block AFNetworkReachabilityStatus status;
-    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status1) {
+    [self listenNetwork:^(AFNetworkReachabilityStatus status1) {
         status = status1;
     }];
     return status;
@@ -37,6 +36,7 @@
 - (void)listenNetwork:(void (^)(AFNetworkReachabilityStatus))callback {
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     [manager setReachabilityStatusChangeBlock:callback];
+    [manager startMonitoring];
 }
 
 
@@ -63,20 +63,20 @@
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
-    [[_manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation,id data){
-        if([data isKindOfClass:[NSDictionary class]]){
+    [[_manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id data) {
+        if ([data isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = data;
-            if([dic[@"errcode"] longValue] !=0){
-                if(errorCallback){
-                    errorCallback(operation, [NSError errorWithDomain:@"com.vikaa.qunyou" code:-1 userInfo:@{NSLocalizedDescriptionKey:dic[@"errmsg"]}]);
+            if ([dic[@"errcode"] longValue] != 0) {
+                if (errorCallback) {
+                    errorCallback(operation, [NSError errorWithDomain:@"com.vikaa.qunyou" code:-1 userInfo:@{NSLocalizedDescriptionKey : dic[@"errmsg"]}]);
                 }
                 return;
             }
-            successCallback(operation,data);
+            successCallback(operation, data);
             return;
         }
-        successCallback(operation,data);
-    } failure:errorCallback] start];
+        successCallback(operation, data);
+    }      failure:errorCallback] start];
 }
 
 /**
@@ -87,20 +87,20 @@
         url = [_api stringByAppendingString:url];
     }
     AFHTTPRequestOperationManager *_manager = manager == nil ? [self getDefaultHttpManager] : manager;
-    [[_manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation,id data){
-        if([data isKindOfClass:[NSDictionary class]]){
+    [[_manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id data) {
+        if ([data isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = data;
-            if([dic[@"errcode"] longValue] !=0){
-                if(errorCallback){
-                    errorCallback(operation, [NSError errorWithDomain:@"com.vikaa.qunyou" code:-1 userInfo:@{NSLocalizedDescriptionKey:dic[@"errmsg"]}]);
+            if ([dic[@"errcode"] longValue] != 0) {
+                if (errorCallback) {
+                    errorCallback(operation, [NSError errorWithDomain:@"com.vikaa.qunyou" code:-1 userInfo:@{NSLocalizedDescriptionKey : dic[@"errmsg"]}]);
                 }
                 return;
             }
-            successCallback(operation,data);
+            successCallback(operation, data);
             return;
         }
-        successCallback(operation,data);
-    } failure:errorCallback] start];
+        successCallback(operation, data);
+    }       failure:errorCallback] start];
 }
 
 /**
