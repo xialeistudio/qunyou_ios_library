@@ -97,7 +97,7 @@ withCancelActionTitle:(NSString *)cancelTitle
      withCancelAction:(void (^)(UIAlertAction *action))cancelAction NS_AVAILABLE_IOS(8_0);
 
 
-- (void)    showAlert:(UIViewController *)viewController
+- (UIAlertView *)    showAlert:(UIViewController *)viewController
             withTitle:(NSString *)title
           withMessage:(NSString *)message
     withOkActionTitle:(NSString *)okTitle

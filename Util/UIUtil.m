@@ -123,10 +123,11 @@
     [viewController presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)showAlert:(UIViewController *)viewController withTitle:(NSString *)title withMessage:(NSString *)message withOkActionTitle:(NSString *)okTitle withCancelActionTitle:(NSString *)cancelTitle withDelegate:(id <UIUtilAlertDelegate>)delegate {
+- (UIAlertView *)showAlert:(UIViewController *)viewController withTitle:(NSString *)title withMessage:(NSString *)message withOkActionTitle:(NSString *)okTitle withCancelActionTitle:(NSString *)cancelTitle withDelegate:(id <UIUtilAlertDelegate>)delegate {
     alertDelegate = delegate;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
     [alertView show];
+    return alertView;
 }
 
 
